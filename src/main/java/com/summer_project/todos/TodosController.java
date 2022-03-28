@@ -21,9 +21,8 @@ public class TodosController {
     int id= 0;
     Todos t1 = new Todos("");
     public void enterFakeTodos(){
-        otherList[0] = "some other chore";
-        otherList[1] = "and one more";
-
+    
+        
         t1.todos = "clean other stuff";
         todos.put(10, t1.todos);
         todos.put(22, "gym");
@@ -39,10 +38,21 @@ public class TodosController {
 
     @CrossOrigin
     @PostMapping("/todos")
+    
     public void addTodo(){
-        todos.put(id, "go to school");
+        otherList[0] = "clean";
+        otherList[1] = "gym";
+        otherList[2] = "Comm tech";
+        otherList[3] = "Agile dev 10 min";
+        otherList[4] = "math 5 min";
+        int max = 5;
+        int min = 1;
+        int range = max -min+1;
+        int addRandomFromList =(int)(Math.random()*range) + min;
+           
+        todos.put(id, otherList[addRandomFromList]);
         id++;
-        System.out.println(" id is " + id);
+        System.out.println(" id is " + id + " , added item is " + otherList[addRandomFromList]);
     }
 
     //and well, this too is unfinished :) 
@@ -51,7 +61,7 @@ public class TodosController {
     
     }
 
-    @GetMapping("/todos/addOne")
+    @GetMapping("/todos:id")
     //this is unfinished, it returns all todos. should return one
     public String getOneTodo(){
         String oneTodo= "Default";
